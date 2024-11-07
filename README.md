@@ -62,7 +62,8 @@ Top regions, states, and cities were identified for revenue:
 ### 1. Distribution of Total Sales
 
 The histogram displays the distribution of Total Sales, with a skew towards lower sales values.
-![Total Sales Distribution](Images/Total_Sales_Distribution_by_Product.png)
+
+![Total Sales Distribution by Product](https://github.com/user-attachments/assets/e98bacda-8819-43ae-9f79-4d6860b92cb5)
 
 
 ### 2. Top Regions by Revenue
