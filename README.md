@@ -61,24 +61,49 @@ Top regions, states, and cities were identified for revenue:
 
 ### 1. Distribution of Total Sales
 
+Description: A box plot showing the distribution of total sales across different product categories.
+Insights:Categories such as "Footwear" and "Apparel" show varying distributions, with "Footwear" generally having a higher sales range. Outliers in each category could indicate products that performed exceptionally well or poorly.
+This distribution analysis helps in identifying top-performing products and those that may need reevaluation.
 The histogram displays the distribution of Total Sales, with a skew towards lower sales values.
 
 ![Total Sales Distribution by Product](https://github.com/user-attachments/assets/e98bacda-8819-43ae-9f79-4d6860b92cb5)
 
 
-### 2. Top Regions by Revenue
+### 2. Monthly Total Sales
+Description: This line chart shows the trend in total sales on a monthly basis.
 
-Top regions by revenue with New York, San Francisco, and Miami leading in sales.
+Insights:
+- The chart reveals a pattern of sales fluctuating over the period, with a notable dip in early 2021, followed by a sharp rise.
+- Peaks in sales may indicate seasonal demand or successful sales campaigns.
+- This trend helps identify periods of high and low sales, which is essential for inventory and supply chain management.
+![Monthly Total Sales](https://github.com/user-attachments/assets/44a1fcc8-0283-4af2-8c58-d58b56e9ea76)
 
-### 3. Profit Margins by Product
+### 3. Units Sold vs Total Sales
+Description: A scatter plot illustrating the relationship between units sold and total sales.
 
-Men’s Street Footwear had the highest profit margin, followed by Women’s Apparel.
+Insights:
+- There is a positive correlation between units sold and total sales, which is expected since more units sold usually lead to higher revenue.
+- This plot helps verify that sales increase in proportion to the number of units sold.
+- Clusters or patterns in this chart can reveal different tiers or segments in pricing, product types, or other factors affecting sales volume.
+![Units Sold vs Total Sales](https://github.com/user-attachments/assets/2d3aeec2-f533-4768-91c6-0a24fe1404e6)
+
+
+### 4. Prophet Model Decomposition (Trend and Yearly Seasonality)
+
+Description: Prophet’s decomposition of the time series, showing the overall trend and yearly seasonality.
+
+Insights:
+- The trend component shows a steady increase in sales over time, indicating growth.
+- The yearly seasonality plot suggests regular fluctuations, which could be tied to annual trends such as holiday seasons or specific shopping events.
+- The seasonal insight is valuable for planning marketing and inventory for high-sales periods.
+![Trend ](https://github.com/user-attachments/assets/8fdff7ad-7880-4e0b-b642-369b9c83e115)
+
 
 ## Forecasting Models
 
 ### 1. SARIMA Model
 
-The SARIMA model (Seasonal ARIMA) was implemented to capture seasonality in monthly sales.
+The SARIMA model (Seasonal ARIMA) was implemented to capture seasonality in monthly sales. The SARIMA model forecast, showing historical sales and forecasted sales with confidence intervals.
 
 **Summary:**
 
@@ -89,28 +114,37 @@ The SARIMA model (Seasonal ARIMA) was implemented to capture seasonality in mont
 
 - The model displayed instability warnings due to a high condition number, suggesting possible overfitting or data limitations.
 - A high variance of approximately 6.97×10<sup>13</sup> suggests significant noise, which may have impacted model accuracy.
+- The SARIMA model captures seasonality and provides a detailed confidence interval. However, the wide intervals indicate a degree of uncertainty in predictions, especially beyond the immediate future.
+- SARIMA performs better than random forest for time series with clear seasonality but may still have limitations due to the data's short history.
+![SARIMA Sales Forecast](https://github.com/user-attachments/assets/11a651fc-9c71-40d0-abb7-d280c02e0663)
 
-*SARIMA model forecast for Adidas sales.*
+
 
 ### 2. Prophet Model
 
-Prophet, developed by Facebook, was used due to its ability to handle seasonality and trend components with less tuning.
+Prophet, developed by Facebook, was used due to its ability to handle seasonality and trend components with less tuning. Prophet’s forecast model, which includes historical data and a forecast for future sales with confidence intervals.
 
 **Insights:**
 
 - The model automatically detected seasonal trends and produced a forecast based on these patterns.
+- The forecast (blue line) projects a steady increase in total sales over time, suggesting a positive growth trend.
+- The shaded area represents the confidence interval, showing where the actual values are likely to fall.
+- The broader confidence interval toward the forecast's end suggests higher uncertainty in long-term predictions.
+- Prophet models seasonality and trend well, making it suitable for business forecasting, especially where seasonality patterns are present.
 - **Deprecation Note**: The 'M' frequency should be updated to 'ME' in future versions.
 
-*Prophet forecast for Adidas sales.*
+![Prophet Sales Forecast](https://github.com/user-attachments/assets/ba3ef3e8-265b-4c5f-8de9-dcdfb7f9d093)
+
 
 ### 3. Random Forest Model
 
-A Random Forest model was applied as a non-linear regression approach. However, it encountered challenges with time-dependent data:
+A Random Forest model was applied as a non-linear regression approach. A random forest-based sales forecast, visualized alongside historical data.However, it encountered challenges with time-dependent data:
 
 - **MAE (Mean Absolute Error)**: ~9 million, indicating high prediction error likely due to lack of time-series dependencies in Random Forest.
 - **Feature Engineering**: Additional temporal features (e.g., lagged sales) were used but were insufficient for high accuracy.
+![Random Forest Sales Forecast](https://github.com/user-attachments/assets/45f5de53-b073-4c92-98f8-08854e2e4e95)
 
-*Random Forest model forecast for Adidas sales.*
+
 
 ## Conclusion and Recommendations
 
